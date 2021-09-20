@@ -2,71 +2,74 @@
   <header>
     <nav class="container">
       <div class="branding">
-        <router-link class="header" :to="{name: 'Home'}">FireBlogs</router-link>
+        <router-link class="header" :to="{ name: 'Home' }"
+          >FireBlogs</router-link
+        >
       </div>
       <div class="nav-links">
         <ul v-show="!mobile">
-          <router-link class="link" to="#" >Home</router-link>
-          <router-link class="link" to="#" >Blogs</router-link>
-          <router-link class="link" to="#" >Create Post</router-link>
-          <router-link class="link" to="#" >Login / Register</router-link>
+          <router-link class="link" to="#">Home</router-link>
+          <router-link class="link" to="#">Blogs</router-link>
+          <router-link class="link" to="#">Create Post</router-link>
+          <router-link class="link" to="#">Login / Register</router-link>
         </ul>
       </div>
     </nav>
-    <menuIcon @click="toggleMobileNav" class="menu-icon" />
+    <menuIcon @click="toggleMobileNav" class="menu-icon" v-show="mobile" />
     <transition name="mobile-nav">
       <ul class="mobile-nav" v-show="mobileNav">
-        <router-link class="link" to="#" >Home</router-link>
-        <router-link class="link" to="#" >Blogs</router-link>
-        <router-link class="link" to="#" >Create Post</router-link>
-        <router-link class="link" to="#" >Login / Register</router-link>
+        <router-link class="link" to="#">Home</router-link>
+        <router-link class="link" to="#">Blogs</router-link>
+        <router-link class="link" to="#">Create Post</router-link>
+        <router-link class="link" to="#">Login / Register</router-link>
       </ul>
     </transition>
   </header>
 </template>
 
 <script>
-import menuIcon from '../assets/Icons/bars-regular.svg'
+import menuIcon from "../assets/Icons/bars-regular.svg";
 export default {
-  name: 'Navigation',
+  name: "Navigation",
   components: {
-    menuIcon
+    menuIcon,
   },
   data() {
     return {
       mobile: null,
       mobileNav: null,
-      windowWidth: null
-    }
+      windowWidth: null,
+    };
   },
   created() {
-    // window.addEventListener('resize', this.checkScreen);
-    // this.checkScreen
+    window.addEventListener("resize", this.checkScreen);
+    this.checkScreen;
   },
   methods: {
     checkScreen() {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth <= 750) {
-        this.mobile = true
+        this.mobile = true;
         return;
       }
-      this.mobile = false
-      this.mobileNav = false
+      this.mobile = false;
+      this.mobileNav = false;
       return;
     },
 
     toggleMobileNav() {
-      this.mobileNav = !this.mobileNav
-    }
-  }
-}
+      this.mobileNav = !this.mobileNav;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 header {
   background-color: #fff;
   padding: 0 25px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
 
   .link {
@@ -138,9 +141,26 @@ header {
     left: 0;
 
     .link {
-      padding:  15px 0;
+      padding: 15px 0;
       color: #fff;
     }
+  }
+
+  .mobile-nav-enter-active,
+  .mobile-nav-leave-active {
+    transition: all 1s ease;
+  }
+
+  .mobile-nav-enter {
+    transform: translateX(-250px);
+  }
+
+  .mobile-nav-enter-to {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-leave-to {
+    transform: translateX(-250px);
   }
 }
 </style>
