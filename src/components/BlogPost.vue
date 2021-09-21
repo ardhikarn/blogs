@@ -18,12 +18,12 @@
       <img
         v-if="post.welcomeScreen"
         :src="require(`../assets/blogPhotos/${post.photo}.jpg`)"
-        alt=""
+        :alt="post.photo"
       />
       <img
         v-else
         :src="require(`../assets/blogPhotos/${post.blogCoverPhoto}.jpg`)"
-        alt=""
+        :alt="post.blogCoverPhoto"
       />
     </div>
   </div>
