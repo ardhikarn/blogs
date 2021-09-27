@@ -28,11 +28,9 @@ export default {
     },
     editPost: {
       get() {
-        console.log("sini masuk gak", this.$store.state.editPost);
         return this.$store.state.editPost;
       },
       set(payload) {
-        console.log("ini payload", payload);
         this.$store.commit("toggleEditPost", payload);
       },
     },

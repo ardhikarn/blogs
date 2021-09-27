@@ -41,9 +41,7 @@ export default {
   components: {
     ArrowRightLight,
   },
-  mounted() {
-    console.log(this.post);
-  },
+  mounted() {},
 };
 </script>
 
