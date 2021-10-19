@@ -27,10 +27,10 @@
             <router-link class="link" :to="{ name: 'Blogs' }">
               Blogs
             </router-link>
-            <router-link v-if="user" class="link" :to="{ name: 'newpost' }">
+            <router-link class="link" :to="{ name: 'newpost' }">
               Create Pos
             </router-link>
-            <router-link v-else class="link" :to="{ name: 'Login' }">
+            <router-link v-if="!user" class="link" :to="{ name: 'Login' }">
               Login / Register
             </router-link>
           </ul>
@@ -56,10 +56,10 @@ export default {
     instagram,
     linkedin,
   },
-  data() {
-    return {
-      user: false,
-    };
+  computed: {
+    user() {
+      return this.$store.state.user
+    }
   },
 };
 </script>
